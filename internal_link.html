@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahamed Diallo</title>
+  <link rel="stylesheet" href="styles/internal_link_style.css">
+  
+</head>
+<body style="background-color: rgb(19, 19, 19);">
+  <div class="container">
+  <div class="header">
+    <div class="header__left">
+      <h3> Name - Title </h3>
+    </div>
+    <div class="header__right">
+      <ul>
+        <a href="index.html">Home</a>
+      <a href="index.html">About</a>
+      <a href="index.html">Contact</a>
+    </ul>
+  </div>
+   
+  </div>
+  <div class="video__box">
+    <div class="video__box__header">
+      <h3>Video Title</h3>
+    </div>
+    <video class="video" src="lowrespreview.mp4" autoplay controls muted loop></video>
+  
+
+    <div class="slideshow">
+      <img src="images/untitled.png" class="slide">
+      <img src="images/Screenshot (3).png " class="slide" alt="Slide 1">
+      <img src="images/Screenshot (4).png" class="slide" alt="Slide 2">
+      <img src="images/Screenshot (5).png" class="slide" alt="Slide 3">
+    </div>
+    
+  </div>
+
+  <div class="video__box__footer"> 
+    <div class="video__box__footer__image">
+      <img src="images/0098.png" class="footer__image">
+      <a href="#">
+        <img src="images/icons8-arrow-50.png" class="arrow-right_footer__image">
+      </a>
+    </div>
+
+    <div class="video__box__footer-left">
+      <img src="images/0098.png" class="footer__image-left">
+      <a class="footer-left-link" href="#">
+        <img src="images/icons8-arrow-50.png" class="arrow-left_footer__image">
+      </a>
+    </div>
+  </div>
+  <div class="photo__grid__container">
+    <div class="photo__grid__item" data-aos="fade-up">
+      <img src="images/Screenshot (3).png" class="photo__grid__image">
+    </div>
+    <div class="photo__grid__item" data-aos="fade-up" data-aos-delay="100">
+      <img src="images/Screenshot (4).png" class="photo__grid__image">
+    </div>
+    <div class="photo__grid__item" data-aos="fade-up" data-aos-delay="200">
+      <img src="images/Screenshot (3).png" class="photo__grid__image">
+    </div>
+    <div class="photo__grid__item" data-aos="fade-up" data-aos-delay="300">
+      <img src="images/Screenshot (5).png" class="photo__grid__image">
+    </div>
+    <div class="photo__grid__item" data-aos="fade-up" data-aos-delay="400">
+      <img src="images/Screenshot (4).png" class="photo__grid__image">
+    </div>
+    <div class="photo__grid__item" data-aos="fade-up" data-aos-delay="500">
+      <img src="images/Screenshot (3).png" class="photo__grid__image">
+    </div>
+  </div>
+  <div class="fixed__nav-bar">
+    <a href="index.html">
+      <img src="images/communications.png"
+      class="chat__icon">
+    </a>
+    <a href="index.html">
+      <img src="images/diaphragm.png">
+    </a>
+    <a href="index.html">
+      <img src="images/home.png">
+    </a>
+
+  </div>
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    // Update styles to show images in a row
+    slides.forEach((slide, index) => {
+      slide.style.position = 'relative'; // Remove absolute positioning
+      slide.style.left = `${index * 20}px`; // Space slides horizontally
+      slide.style.opacity = 0.5; // Default lower opacity
+      slide.style.transform = 'scale(1)'; // Default scale
+      slide.style.transition = 'opacity 0.5s ease, transform 0.6s ease in and out'; // Add transition
+    });
+
+    function nextSlide() {
+      // Reset previous slide
+      slides[currentSlide].style.opacity = 0.5;
+      slides[currentSlide].style.transform = 'scale(1)';
+      
+      currentSlide = (currentSlide + 1) % slides.length;
+      
+      // Animate new active slide
+      slides[currentSlide].style.opacity = 1;
+      slides[currentSlide].style.transform = 'scale(1.2)';
+    }
+
+    // Set initial active slide
+    slides[0].style.opacity = 1;
+    slides[0].style.transform = 'scale(1.2)';
+    setInterval(nextSlide, 3000);
+  
+    //photo grid endless slide
+    const gridContainer = document.querySelector('.photo__grid__container');
+    const gridItems = document.querySelectorAll('.photo__grid__item');
+    
+    // Adjust position to bring grid up
+    gridContainer.style.position = 'absolute';
+    gridContainer.style.bottom = '0';
+    gridContainer.style.right = '0';
+    gridContainer.style.left = '0';
+    gridContainer.style.top = '520px'; // Moved grid lower by increasing top value
+    gridContainer.style.transform = 'translateX(50%)';
+
+    // Ensure smooth transition without pushing too far down
+    setTimeout(() => {
+      gridContainer.style.opacity = '1';
+    }, 500);
+    // Clone items up to max of 24 total
+    const maxItems = 12;
+    const itemsToAdd = maxItems - gridItems.length;
+    
+    if (itemsToAdd > 0) {
+      for (let i = 0; i < itemsToAdd; i++) {
+        const clone = gridItems[i % gridItems.length].cloneNode(true);
+        gridContainer.appendChild(clone);
+      }
+    }
+
+    // Update opacity based on scroll position
+    function updateOpacity() {
+      const items = document.querySelectorAll('.photo__grid__item');
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const elementCenter = rect.top + (rect.height/2);
+        const distanceFromCenter = Math.abs(windowHeight/2 - elementCenter);
+        let opacity = 1 - (distanceFromCenter / (windowHeight/2));
+        opacity = Math.min(Math.max(opacity, 0.1), 1); // Clamp between 0.3 and 1
+        item.style.opacity = opacity;
+      });
+    }
+
+    // Add scroll listener for opacity effect only
+    window.addEventListener('scroll', () => {
+      requestAnimationFrame(() => {
+        updateOpacity();
+      });
+    });
+
+    // Initial opacity update
+    updateOpacity();
+  </script>
+</body>
+</html>

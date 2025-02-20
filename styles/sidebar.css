@@ -1,0 +1,250 @@
+
+
+/* ---fixed nav bar--- */
+
+.fixed__nav-bar{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 93%;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.616);
+  margin-left: 10px;
+  margin-bottom: 10px;
+  
+  z-index: 170;
+  border-radius: 23px;
+  opacity: 0;
+
+  display: flex;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: center;
+  flex-direction: row;
+  animation: appear 3s ease forwards;
+}
+.fixed__nav-bar svg path{
+  stroke: transparent;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 600;
+}
+
+@keyframes draw{
+  0% {
+    stroke-dashoffset: 600;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.icon__wrapper:hover svg path {
+  stroke: #ffffff;
+  animation: draw 9s ease forwards;
+}
+.fixed__nav-bar .wrapper::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 38px;
+  height: 38px;
+  background-color: rgba(0, 78, 124, 0.966);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.3);
+  
+  transform: translate(-50%, -50%) scale(1.2);
+  transition: transform 0.3s ease-in-out,opacity 0.3s ease-in-out;
+  z-index: -1;
+
+  opacity: 0;
+}
+.icon__wrapper:nth-child(2):hover .wrapper::before{
+  opacity: 1;
+  transform: translateX(-30px) translateY(-30px);
+  filter: blur(2px);
+}
+.icon__wrapper:hover svg{
+  transform: translateY(-20px);
+}
+
+.circle__icon-1, .circle__icon-2, .diamond__icon-1, .diamond__icon-2, .star__icon, .triangle__icon {
+  position: absolute;
+  filter: invert(100%);
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  top: 50%;
+  left: 50%;
+}
+
+.circle__icon-1 {
+  transform: translate(90%, -290%) scale(0);
+  transition: transform 0.3s ease-in-out;
+}
+.icon__wrapper:hover .circle__icon-1 {
+  transform: translate(90%, -290%) scale(0.6);
+}
+
+.circle__icon-2 {
+  transform: translate(-150%, -150%) scale(0);
+  transition: transform 0.3s ease-in-out;
+}
+.icon__wrapper:hover .circle__icon-2 {
+  transform: translate(-150%, -150%) scale(0.4);
+}
+
+.diamond__icon-1 {
+  transform: translate(-190%, -340%) scale(0) rotate(45deg);
+  transition: transform 0.3s ease-in-out;
+}
+.icon__wrapper:hover .diamond__icon-1 {
+  transform: translate(-190%, -340%) scale(0.5) rotate(45deg);
+}
+
+.diamond__icon-2 {
+  transform: translate(100%, -100%) scale(0);
+  transition: transform 0.3s ease-in-out;
+}
+.icon__wrapper:hover .diamond__icon-2 {
+  transform: translate(100%, -100%) scale(0.6);
+}
+
+.star__icon {
+  transform: translate(-10%, -250%) scale(0);
+  transition: transform 0.3s ease-in-out;
+}
+.icon__wrapper:hover .star__icon {
+  transform: translate(-10%, -250%) scale(0.9);
+}
+
+.triangle__icon {
+  transform: translate(-90%, -50%) scale(0) rotate(45deg);
+  transition: transform 0.3s ease-in-out;
+}
+.icon__wrapper:hover .triangle__icon {
+  transform: translate(-90%, -50%) scale(0.4) rotate(45deg);
+}
+/* ---instagram icon animation--- */
+
+.icon__wrapper:nth-child(1) .circle__icon-1{
+  transform: translateX(-260px) translateY(-40px) scale(0);
+}
+.icon__wrapper:hover:nth-child(1) .circle__icon-1{
+  transform: translateX(-310px) translateY(-40px) scale(0.9);
+  transition: transform 0.3s ease-in-out;
+}
+.icon__wrapper:nth-child(1) .circle__icon-2{
+  transform: translateX(-260px) translateY(-0px) scale(0);
+  transition: transform .7s ease-in-out;
+}
+.icon__wrapper:hover:nth-child(1) .circle__icon-2{
+  transform: translateX(-260px) translateY(-30px) scale(0.3);
+}
+.icon__wrapper:nth-child(1) .diamond__icon-1{
+  transform: translateX(-280px) translateY(-60px) scale(0) rotate(0deg);
+  transition: transform 1s ease-in-out;
+}
+.icon__wrapper:hover:nth-child(1) .diamond__icon-1{
+  transform: translateX(-280px) translateY(-60px) scale(0.6) rotate(45deg);
+}
+.icon__wrapper:nth-child(1) .star__icon{
+  transform: translateX(-270px) translateY(-20px) scale(0) rotate(0deg);
+  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1)s ease-in-out;
+}
+.icon__wrapper:hover:nth-child(1) .star__icon{
+  transform: translateX(-270px) translateY(-10px) scale(.6);
+}
+
+
+/* ---twitter icon animation--- */
+
+.icon__wrapper:nth-child(3) .circle__icon-1{
+  transform: translate(1060%, -290%) scale(0);
+}
+.icon__wrapper:hover:nth-child(3) .circle__icon-1{
+  transform: translate(1360%, -290%) scale(0.6);
+}
+.icon__wrapper:nth-child(3) .circle__icon-2{
+  transform: translate(1660%, -270%) scale(0);
+  transition: transform .7s ease-in-out;
+}
+.icon__wrapper:hover:nth-child(3) .circle__icon-2{
+  transform: translate(1660%, -290%) scale(0.4);
+}
+.icon__wrapper:nth-child(3) .diamond__icon-1{
+  transform: translate(1360%, -140%) scale(0) rotate(0deg);
+  transition: transform 1s ease-in-out;
+}
+.icon__wrapper:hover:nth-child(3) .diamond__icon-1{
+  transform: translate(1360%, -140%) scale(0.5) rotate(150deg);
+}
+.icon__wrapper:nth-child(3) .star__icon{
+  transform: translate(1490%, -140%) scale(0) rotate(0deg);
+  transition: transform .3s ease-in-out;
+}
+.icon__wrapper:hover:nth-child(3) .star__icon{
+  transform: translate(1490%, -80%) scale(0.7) rotate(20deg);
+}
+
+
+@keyframes appear{
+  from{
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+
+.icon__wrapper{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .icon__wrapper:hover{
+  background-color: rgba(0, 0, 0, 0.377);
+} */
+@media (min-width: 320px) {
+  .fixed__nav-bar svg{
+    width: 50px;
+    height: 50px;
+  }
+  .icon__wrapper:nth-child(3) img{ 
+    position: absolute;
+    left: -10%;
+  }
+  .icon__wrapper:nth-child(1) img{
+    position: absolute;
+    left: 20%;
+  }
+}
+@media (min-width: 370px) {
+  .fixed__nav-bar svg{
+    width: 60px;
+    height: 60px;
+  }
+  .icon__wrapper:nth-child(3) img{ 
+    position: absolute;
+    left: 10%;
+  }
+  .icon__wrapper:nth-child(1) img{
+    position: absolute;
+    left: 20%;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .fixed__nav-bar{
+    width: 70%;
+    left: 10%;
+  }
+}
+
+
